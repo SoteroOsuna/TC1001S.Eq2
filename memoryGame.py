@@ -6,8 +6,16 @@ car = path('car.gif')
 tiles = list(range(32)) * 2
 #Turtle responsable de escribir el número de taps
 writer = Turtle(visible=False)
-state = {'mark': None, "taps": 0}
+#Adición de variables de estado para número de taps y para checar que termino
+state = {'mark': None, "taps": 0, 'done': False}
 hide = [True] * 64
+
+def checkOver():
+    state["done"] = True
+    for index in range(64):
+        if hide[index]:
+            state["done"] = False
+    return state["done"]
 
 def inside(x, y):
     return -200 < x < 200 and -200 < y < 200
@@ -34,22 +42,21 @@ def xy(count):
 
 def tap(x, y):
     "Update mark and hidden tiles based on tap."
-    if(inside(x, y)):
+    if inside(x, y) and not state["done"]:
         spot = index(x, y)
         mark = state['mark']
 
-        if mark is None or mark == spot or tiles[mark] != tiles[spot]:
+        if mark is None or mark == spot or tiles[mark] != tiles[spot] and hide[spot]:
             state['mark'] = spot
         else:
             hide[spot] = False
             hide[mark] = False
             state['mark'] = None
 
-        global tapCounter
         state["taps"] += 1
-        print(state["taps"])
 
 def draw():
+
     "Draw image and tiles."
 
     #Escribir el número de taps en la pantalla
@@ -67,7 +74,7 @@ def draw():
 
     mark = state['mark']
 
-    if mark is not None and hide[mark]:
+    if mark is not None and (hide[mark]):
         x, y = xy(mark)
         up()
         goto(x, y)
@@ -75,6 +82,10 @@ def draw():
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
     update()
+
+    if checkOver():
+        return
+
     ontimer(draw, 100)
 
 shuffle(tiles)
@@ -83,7 +94,6 @@ tracer(False)
 writer.goto(0, 210)
 writer.color('blue')
 writer.write(state["taps"], font=("Arial", 30, 'bold'), align='center')
-listen()
 addshape(car)
 hideturtle()
 onscreenclick(tap)
