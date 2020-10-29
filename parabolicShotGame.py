@@ -11,8 +11,9 @@ def tap(x, y):
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        speed.x = (x + 200) / 25
-        speed.y = (y + 200) / 25
+        #Aumento de velocidad inicial al hacer click
+        speed.x = (x + 400) / 20
+        speed.y = (y + 400) / 20
 
 def inside(xy):
     "Return True if xy within screen."
@@ -40,10 +41,15 @@ def move():
         targets.append(target)
 
     for target in targets:
-        target.x -= 0.5
+        #Aumento de velocidad
+        target.x -= 2
+        #Condición para reposicionar targets cuando se salgan completamente del cuadro
+        if (target.x == -220):
+            target.x = 190
 
     if inside(ball):
-        speed.y -= 0.35
+        #Aumentar velocidad de caída
+        speed.y -= 1
         ball.move(speed)
 
     dupe = targets.copy()
@@ -55,9 +61,12 @@ def move():
 
     draw()
 
+    #Hacer el juego infinito quitando la condición de que se acabe cuando un target
+    '''
     for target in targets:
         if not inside(target):
             return
+    '''
 
     ontimer(move, 50)
 
