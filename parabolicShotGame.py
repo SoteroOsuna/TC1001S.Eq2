@@ -6,6 +6,8 @@ ball = vector(-200, -200)
 speed = vector(0, 0)
 targets = []
 
+#OOPS
+
 def tap(x, y):
     "Respond to screen tap."
     if not inside(ball):
