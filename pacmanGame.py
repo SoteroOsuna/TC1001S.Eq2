@@ -7,11 +7,12 @@ path = Turtle(visible=False)
 writer = Turtle(visible=False)
 aim = vector(5, 0)
 pacman = vector(-40, -80)
+#Aumento de velocidad inicial con respecto a Pacman por medio de aumento de magnitud en el vector de dirección
 ghosts = [
-    [vector(-180, 160), vector(5, 0)],
-    [vector(-180, -160), vector(0, 5)],
-    [vector(100, 160), vector(0, -5)],
-    [vector(100, -160), vector(-5, 0)],
+    [vector(-180, 160), vector(8, 0)],
+    [vector(-180, -160), vector(0, 8)],
+    [vector(100, 160), vector(0, -8)],
+    [vector(100, -160), vector(-8, 0)],
 ]
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -115,11 +116,12 @@ def move():
         if valid(point + course):
             point.move(course)
         else:
+            #Aumentar velocidad
             options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
+                vector(8, 0),
+                vector(-8, 0),
+                vector(0, 8),
+                vector(0, -8),
             ]
             plan = choice(options)
             course.x = plan.x
