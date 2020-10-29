@@ -43,6 +43,28 @@ def move():
     update()
     ontimer(move, 100)
 
+def moveFood():
+
+    #Código para que sólo se mueva en 4 direcciónes (arriba, abajo, izquierda y derecha) junto con limites
+    opcion = randrange(0,2)
+    if(opcion == 0):
+        if (food.x == -200):
+            food.x += 10
+        elif (food.x == 190):
+            food.x -= 10
+        else:
+            food.x += randrange(-10, 11, 20)
+    else:
+        if(food.y == -200):
+            food.y += 10
+        elif(food.y == 190):
+            food.y -= 10
+        else:
+            food.y += randrange(-10, 11, 20)
+
+    ontimer(moveFood, 5)
+
+
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
@@ -52,4 +74,5 @@ onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 move()
+moveFood()
 done()
