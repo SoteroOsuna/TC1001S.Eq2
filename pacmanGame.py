@@ -1,6 +1,7 @@
 from random import choice
 from turtle import *
 from freegames import floor, vector
+import math
 
 state = {'score': 0}
 path = Turtle(visible=False)
@@ -89,6 +90,7 @@ def world():
                 path.goto(x + 10, y + 10)
                 path.dot(2, 'white')
 
+
 def move():
     "Move pacman and all ghosts."
     writer.undo()
@@ -112,18 +114,67 @@ def move():
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
 
+    i = 1
+
     for point, course in ghosts:
         if valid(point + course):
             point.move(course)
         else:
-            #Aumentar velocidad
             options = [
                 vector(8, 0),
                 vector(-8, 0),
                 vector(0, 8),
                 vector(0, -8),
             ]
+
+            # course.x = plan.x
+            # course.y = plan.y
+
+            # get pacman offset
+            poff = offset(pacman)  # 0-posibles índices de las casillas de la lista
+            pcol = poff % 20
+            pren = math.floor(poff / 20)
+
+            # get ghost offset
+            goff = offset(point)
+            gcol = goff % 20
+            gren = math.floor(goff / 20)
+
+            if (pcol < gcol and pren < gren):
+                # elegir arriba o a la izq
+                options = [
+                    vector(-8, 0),
+                    vector(0, 8),
+                ]
+                print("Estoy yendo hacia arriba/izq")
+
+            if (pcol > gcol and pren < gren):
+                # elegir arriba o a la der
+                options = [
+                    vector(8, 0),
+                    vector(0, 8),
+                ]
+                print("Estoy yendo hacia arriba/der")
+
+            if (pcol < gcol and pren > gren):
+                # elegir abajo o a la izq
+                options = [
+                    vector(-8, 0),
+                    vector(0, -8),
+                ]
+                print("Estoy yendo hacia abajo/izq")
+
+            if (pcol > gcol and pren > gren):
+                # elegir abajo o a la der
+                options = [
+                    vector(8, 0),
+                    vector(0, -8),
+                ]
+                print("Estoy yendo hacia abajo/der")
+
+            # escoger alguna opción
             plan = choice(options)
+
             course.x = plan.x
             course.y = plan.y
 
