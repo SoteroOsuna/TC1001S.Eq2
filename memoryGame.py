@@ -4,6 +4,7 @@ from freegames import path
 
 car = path('car.gif')
 tiles = list(range(32)) * 2
+#Emojis para sustituir el número
 tileEmoji = { 0: "🐶", 1: "🐱", 2: "🐭", 3: "🐹", 4: "🐰", 5: "🦊", 6: "🐻", 7: "🐼",
               8: "🐨", 9: "🐯", 10: "🦁", 11: "🐮", 12: "🐷", 13: "🐸", 14: "🐵", 15: "🐔",
               16: "🐧", 17: "🐦", 18: "🐤", 19: "🦆", 20: "🦅", 21: "🦉", 22: "🦇", 23: "🐺",
@@ -64,7 +65,7 @@ def draw():
 
     "Draw image and tiles."
 
-    #Escribir el número de taps en la pantalla
+    #Escribir el número de taps en la pantalla  usando writer
     writer.undo()
     writer.write(state["taps"], font=("Arial", 30, 'bold'), align='center')
     clear()

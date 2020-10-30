@@ -74,6 +74,8 @@ def valid(point):
 
 def world():
     "Draw world using path."
+
+    #Ligeros cambios al tablero con colores
     bgcolor('orange')
     path.color('white')
 
