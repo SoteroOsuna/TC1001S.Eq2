@@ -4,6 +4,11 @@ from freegames import path
 
 car = path('car.gif')
 tiles = list(range(32)) * 2
+tileEmoji = { 0: "🐶", 1: "🐱", 2: "🐭", 3: "🐹", 4: "🐰", 5: "🦊", 6: "🐻", 7: "🐼",
+              8: "🐨", 9: "🐯", 10: "🦁", 11: "🐮", 12: "🐷", 13: "🐸", 14: "🐵", 15: "🐔",
+              16: "🐧", 17: "🐦", 18: "🐤", 19: "🦆", 20: "🦅", 21: "🦉", 22: "🦇", 23: "🐺",
+              24: "🐗", 25: "🐴", 26: "🦄", 27: "🐡", 28: "🐙", 29: "🐬", 30: "🐳", 31: "🐋"
+              }
 #Turtle responsable de escribir el número de taps
 writer = Turtle(visible=False)
 #Adición de variables de estado para número de taps y para checar que termino
@@ -80,7 +85,7 @@ def draw():
         #Centrado de número al "voletar" tarjetas
         goto(x + 25, y + 10)
         color('black')
-        write(tiles[mark], font=('Arial', 25, 'normal'), align='center')
+        write(tileEmoji[tiles[mark]], font=('Arial', 20, 'normal'), align='center')
 
     update()
 
