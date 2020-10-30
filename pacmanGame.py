@@ -1,4 +1,4 @@
-from random import choice
+from random import choice, randrange
 from turtle import *
 from freegames import floor, vector
 import math
@@ -11,10 +11,10 @@ pacman = vector(-40, -80)
 
 #Aumento de velocidad inicial con respecto a Pacman por medio de aumento de magnitud en el vector de dirección
 ghosts = [
-    [vector(-180, 160), vector(8, 0)],
-    [vector(-180, -160), vector(0, 8)],
-    [vector(100, 160), vector(0, -8)],
-    [vector(100, -160), vector(-8, 0)],
+    [vector(-180, 160), vector(10, 0)],
+    [vector(-180, -160), vector(0, 10)],
+    [vector(100, 160), vector(0, -10)],
+    [vector(100, -160), vector(-10, 0)],
 ]
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -123,11 +123,18 @@ def move():
         if valid(point + course):
             point.move(course)
         else:
+            regularOptions = [
+                vector(10, 0),
+                vector(-10, 0),
+                vector(0, 10),
+                vector(0, -10),
+            ]
+
             options = [
-                vector(8, 0),
-                vector(-8, 0),
-                vector(0, 8),
-                vector(0, -8),
+                vector(10, 0),
+                vector(-10, 0),
+                vector(0, 10),
+                vector(0, -10),
             ]
 
             # course.x = plan.x
@@ -146,37 +153,59 @@ def move():
             if (pcol < gcol and pren < gren):
                 # elegir arriba o a la izq
                 options = [
-                    vector(-8, 0),
-                    vector(0, 8),
+                    vector(-10, 0),
+                    vector(0, 10),
                 ]
                 print("Estoy yendo hacia arriba/izq")
 
             if (pcol > gcol and pren < gren):
                 # elegir arriba o a la der
                 options = [
-                    vector(8, 0),
-                    vector(0, 8),
+                    vector(10, 0),
+                    vector(0, 10),
                 ]
                 print("Estoy yendo hacia arriba/der")
 
             if (pcol < gcol and pren > gren):
                 # elegir abajo o a la izq
                 options = [
-                    vector(-8, 0),
-                    vector(0, -8),
+                    vector(-10, 0),
+                    vector(0, -10),
                 ]
                 print("Estoy yendo hacia abajo/izq")
 
             if (pcol > gcol and pren > gren):
                 # elegir abajo o a la der
                 options = [
-                    vector(8, 0),
-                    vector(0, -8),
+                    vector(10, 0),
+                    vector(0, -10),
                 ]
                 print("Estoy yendo hacia abajo/der")
 
-            # escoger alguna opción
-            plan = choice(options)
+            if (pcol == gcol and pren > gren):
+                #elegir abajo
+                options = [
+                    vector(0, -10)
+                ]
+            if (pcol == gcol and pren < gren):
+                #elegir arriba
+                options = [
+                    vector(0, 10)
+                ]
+            if (pcol < gcol and pren == gren):
+                #elegir izquierda
+                options = [
+                    vector(-10, 0)
+                ]
+            if (pcol > gcol and pren == gren):
+                #elegir izquierda
+                options = [
+                    vector(-10, 0)
+                ]
+
+            # escoger alguna opción (regular o "inteligente")
+            x = randrange(0, 2)
+            plan = choice(options) if x == 0 else choice(regularOptions)
 
             course.x = plan.x
             course.y = plan.y
