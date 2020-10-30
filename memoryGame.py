@@ -77,9 +77,10 @@ def draw():
     if mark is not None and (hide[mark]):
         x, y = xy(mark)
         up()
-        goto(x, y)
+        #Centrado de número al "voletar" tarjetas
+        goto(x + 25, y + 10)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(tiles[mark], font=('Arial', 25, 'normal'), align='center')
 
     update()
 
