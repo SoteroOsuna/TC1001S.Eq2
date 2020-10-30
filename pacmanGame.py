@@ -74,8 +74,8 @@ def valid(point):
 
 def world():
     "Draw world using path."
-    bgcolor('black')
-    path.color('blue')
+    bgcolor('orange')
+    path.color('white')
 
     for index in range(len(tiles)):
         tile = tiles[index]
@@ -88,7 +88,7 @@ def world():
             if tile == 1:
                 path.up()
                 path.goto(x + 10, y + 10)
-                path.dot(2, 'white')
+                path.dot(2, 'cyan')
 
 
 def move():
@@ -112,7 +112,7 @@ def move():
 
     up()
     goto(pacman.x + 10, pacman.y + 10)
-    dot(20, 'yellow')
+    dot(20, 'maroon')
 
     i = 1
 
@@ -199,6 +199,7 @@ def change(x, y):
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
+writer.color("orange")
 writer.goto(160, 160)
 writer.color('white')
 writer.write(state['score'])
