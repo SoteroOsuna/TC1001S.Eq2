@@ -1,2 +1,2 @@
 # TC1001S.Eq2
-Semana Tec
+Juegos y modificaciones hechas para la Semana Tec.
