@@ -25,11 +25,12 @@ def drawCircle(start, end):
     "Draw circle from start to end."
     up()
     goto(start.x, start.y)
-    radius = ((abs(start.x) + abs(end.x))**2 + (abs(start.y) + abs(end.y))**2)**0.5
+    midpoint= (start.x + end.x) / 2
+    goto(midpoint, start.y)
     down()
     begin_fill()
 
-    circle(radius)
+    circle(end.x - midpoint)
 
 
     end_fill()
