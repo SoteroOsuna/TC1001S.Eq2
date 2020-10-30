@@ -51,9 +51,10 @@ def move():
     update()
     ontimer(move, 100)
 
+#Función para que se mueva la comida
 def moveFood():
 
-    #Código para que sólo se mueva en 4 direcciónes (arriba, abajo, izquierda y derecha) junto con limites
+    #Código para que sólo se mueva en 4 direcciónes (arriba, abajo, izquierda y derecha) junto con limites para que se quede dentro
     opcion = randrange(0,2)
     if(opcion == 0):
         if (food.x == -200):

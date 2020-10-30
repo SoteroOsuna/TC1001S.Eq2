@@ -13,7 +13,7 @@ def tap(x, y):
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        #Aumento de velocidad inicial al hacer click
+        #Aumento de velocidad inicial al hacer click aumentando magnitud de speed en ambas direcciones
         speed.x = (x + 400) / 20
         speed.y = (y + 400) / 20
 
@@ -43,14 +43,14 @@ def move():
         targets.append(target)
 
     for target in targets:
-        #Aumento de velocidad
+        #Aumento de velocidad con aumento de magnitud
         target.x -= 2
-        #Condición para reposicionar targets cuando se salgan completamente del cuadro
+        #Condición para reposicionar targets cuando se salgan completamente del cuadro al salirse de la posición de hasta la izquierda
         if (target.x == -220):
             target.x = 190
 
     if inside(ball):
-        #Aumentar velocidad de caída
+        #Aumentar velocidad de caída aumentando magnitud de speed
         speed.y -= 1
         ball.move(speed)
 

@@ -21,12 +21,13 @@ def square(start, end):
 
     end_fill()
 
+#Dibujo de círculo tomando como diámetro la distancia entre los dos clicks y usando la función circle()
 def drawCircle(start, end):
     "Draw circle from start to end."
     up()
     goto(start.x, start.y)
     midpoint= (start.x + end.x) / 2
-    goto(midpoint, start.y)
+    goto(midpoint, start.y - (end.x - midpoint))
     down()
     begin_fill()
 
@@ -36,6 +37,7 @@ def drawCircle(start, end):
     end_fill()
     pass  # TODO
 
+#Función que hace un rectángulo considerando el código para el cuadrado, pero con la mitad de la altura
 def rectangle(start, end):
     "Draw rectangle from start to end."
     up()
@@ -53,6 +55,7 @@ def rectangle(start, end):
     end_fill()
     pass  # TODO
 
+#Función de triángulo usando giros de 120 grados para que se devuelva al punto inicial formando un triángulo, sumando 180º interiores
 def triangle(start, end):
     "Draw triangle from start to end."
     up()
@@ -93,6 +96,7 @@ onkey(lambda: color('white'), 'W')
 onkey(lambda: color('green'), 'G')
 onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
+#Color extra: morado
 onkey(lambda: color('purple'), 'P')
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')

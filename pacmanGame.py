@@ -8,6 +8,7 @@ path = Turtle(visible=False)
 writer = Turtle(visible=False)
 aim = vector(5, 0)
 pacman = vector(-40, -80)
+
 #Aumento de velocidad inicial con respecto a Pacman por medio de aumento de magnitud en el vector de dirección
 ghosts = [
     [vector(-180, 160), vector(8, 0)],
